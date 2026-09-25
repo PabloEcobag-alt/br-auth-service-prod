@@ -87,9 +87,18 @@ builder.Services.AddOpenIddict()
             OpenIddictConstants.Scopes.Roles,
             "systems");
 
-        options.AddDevelopmentEncryptionCertificate()
-               .AddDevelopmentSigningCertificate()
-               .DisableAccessTokenEncryption();
+        if (builder.Environment.IsDevelopment())
+        {
+            options.AddDevelopmentEncryptionCertificate()
+                   .AddDevelopmentSigningCertificate();
+        }
+        else
+        {
+            options.AddEphemeralEncryptionKey()
+                   .AddEphemeralSigningKey();
+        }
+        
+        options.DisableAccessTokenEncryption();
 
         options.UseAspNetCore()
                .EnableAuthorizationEndpointPassthrough()
