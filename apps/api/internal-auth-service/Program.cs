@@ -87,7 +87,7 @@ builder.Services.AddOpenIddict()
             OpenIddictConstants.Scopes.Roles,
             "systems");
 
-        if (builder.Environment.IsDevelopment())
+        if (builder.Environment.IsDevelopment() && string.IsNullOrEmpty(Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID")))
         {
             options.AddDevelopmentEncryptionCertificate()
                    .AddDevelopmentSigningCertificate();
