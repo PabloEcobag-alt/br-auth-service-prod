@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Verify OTP — Bren Raphael's Enterprise Suite</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="/css/account/verify-otp.css" rel="stylesheet" />
+    <script src="/js/account/tailwind.config.js"></script>
+  </head>
+  <body class="bg-background text-foreground flex flex-col min-h-screen">
+    <main
+      class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop"
+    >
+      <!-- Verify OTP Card -->
+      <div
+        class="w-full max-w-md bg-surface-container-lowest border border-outline-variant p-xl md:p-3xl shadow-sm rounded-lg"
+      >
+        <!-- Identity Section -->
+        <div class="mb-xl text-center">
+          <h1
+            class="font-display-sm text-display-sm text-primary mb-xs tracking-tight"
+          >
+            Bren Raphael's
+          </h1>
+          <p
+            class="font-body-sm text-body-sm text-on-surface-variant opacity-70"
+          >
+            Enterprise Suite
+          </p>
+        </div>
+
+        <!-- Title -->
+        <div class="text-center mb-lg">
+          <h2 class="font-title-md text-title-md text-on-surface font-semibold">
+            Verify Your Identity
+          </h2>
+          <p class="font-body-sm text-body-sm text-secondary mt-sm">
+            Enter the 6-digit verification code sent to <strong>{{maskedEmail}}</strong>
+          </p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-wrapper">{{successHtml}}</div>
+
+        <!-- Error Message -->
+        <div class="error-wrapper">{{errorHtml}}</div>
+
+        <!-- OTP Form -->
+        <form
+          class="space-y-lg"
+          id="otpForm"
+          method="post"
+          action="/Account/VerifyOtp"
+        >
+          <input type="hidden" name="username" value="{{username}}" />
+          <input type="hidden" name="returnUrl" value="{{returnUrl}}" />
+          <input type="hidden" name="code" id="codeInput" value="" />
+
+          <!-- OTP Digit Inputs -->
+          <div class="flex justify-center gap-sm" id="otpInputs">
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="otp-digit" data-index="0" autocomplete="one-time-code" />
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="otp-digit" data-index="1" />
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="otp-digit" data-index="2" />
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="otp-digit" data-index="3" />
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="otp-digit" data-index="4" />
+            <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" class="otp-digit" data-index="5" />
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-md flex flex-col gap-sm justify-center items-center">
+            <button
+              class="w-full h-12 bg-primary text-on-primary font-semibold text-sm rounded-lg flex items-center justify-center gap-sm hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              type="submit"
+              id="submitBtn"
+            >
+              Verify Code
+              <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Resend Section -->
+        <div class="mt-lg text-center">
+          <p class="font-body-sm text-body-sm text-secondary mb-sm">
+            Didn't receive the code?
+          </p>
+          <form method="post" action="/Account/ResendOtp" id="resendForm">
+            <input type="hidden" name="username" value="{{username}}" />
+            <input type="hidden" name="returnUrl" value="{{returnUrl}}" />
+            <button
+              type="submit"
+              id="resendBtn"
+              class="text-sm text-primary font-semibold hover:underline cursor-pointer bg-transparent border-none"
+            >
+              Resend Code
+            </button>
+          </form>
+        </div>
+
+        <!-- Back to Sign In -->
+        <div class="mt-md text-center">
+          <a
+            class="text-sm text-secondary hover:text-primary hover:underline cursor-pointer"
+            href="/Account/Login?returnUrl={{returnUrl}}"
+          >Back to Sign in</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full py-xl border-t border-outline-variant bg-surface-container-low"
+    >
+      <div
+        class="max-w-max-width mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md"
+      >
+        <p
+          class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left"
+        >
+          &copy; 2026 Bren Raphael's Enterprise Suite. All rights reserved.
+        </p>
+        <div class="flex gap-xl">
+          <span
+            class="font-label-sm text-label-sm text-outline cursor-default hover:text-primary transition-colors"
+            >Security</span
+          >
+          <span
+            class="font-label-sm text-label-sm text-outline cursor-default hover:text-primary transition-colors"
+            >Privacy</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Background Atmospheric Elements -->
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+      <div
+        class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"
+      ></div>
+      <div
+        class="absolute bottom-[-5%] left-[-5%] w-[30%] h-[30%] bg-secondary-container/20 rounded-full blur-[100px]"
+      ></div>
+    </div>
+
+    <script src="/js/account/verify-otp.js"></script>
+  </body>
+</html>

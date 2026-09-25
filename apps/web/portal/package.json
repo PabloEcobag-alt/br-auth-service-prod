@@ -1,0 +1,38 @@
+{
+  "name": "portal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS='--max-http-header-size=32768' next dev -p 3000 --experimental-https --experimental-https-cert ./localhost.pem --experimental-https-key ./localhost-key.pem",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "hamburger-react": "^2.5.1",
+    "lucide-react": "^0.368.0",
+    "next": "16.2.10",
+    "next-auth": "^5.0.0-beta.31",
+    "next-themes": "^0.3.0",
+    "radix-ui": "^1.6.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sonner": "^1.4.41",
+    "tailwind-merge": "^2.2.2",
+    "undici": "^8.7.0",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.10",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

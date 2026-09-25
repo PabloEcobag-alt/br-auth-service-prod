@@ -1,0 +1,72 @@
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Sheet Animations */
+@keyframes sheetSlideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes sheetSlideOutRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+.data-\[state\=open\]\:slide-in-from-right[data-state="open"] {
+  animation: sheetSlideInRight 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.data-\[state\=closed\]\:slide-out-to-right[data-state="closed"] {
+  animation: sheetSlideOutRight 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* Sheet Overlay (backdrop) Animations */
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.data-\[state\=open\]\:fade-in-0[data-state="open"] {
+  animation: overlayFadeIn 0.4s ease-out forwards;
+}
+
+.data-\[state\=closed\]\:fade-out-0[data-state="closed"] {
+  animation: overlayFadeOut 0.3s ease-in forwards;
+}
+
+/* Accordion Animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+.data-\[state\=open\]\:animate-accordion-down[data-state="open"] {
+  animation: accordion-down 0.2s ease-out forwards;
+}
+
+.data-\[state\=closed\]\:animate-accordion-up[data-state="closed"] {
+  animation: accordion-up 0.2s ease-out forwards;
+}

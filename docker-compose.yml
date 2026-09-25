@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: ./apps/api/internal-auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./apps/api/internal-auth-service/internal_auth_service.db:/app/internal_auth_service.db
+
+  web:
+    build:
+      context: ./apps/web/portal
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - AUTH_URL=http://localhost:3000
+      - AUTH_ISSUER=http://api:5001/
+    depends_on:
+      - api

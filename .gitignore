@@ -1,0 +1,70 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# This project uses npm workspaces (package-lock.json) — ignore other package
+# managers' lockfiles so they don't confuse tooling (e.g. Turbopack root detection)
+pnpm-lock.yaml
+yarn.lock
+
+# Next.js build output
+.next/
+out/
+build/
+tsconfig.tsbuildinfo
+
+# .NET build output
+bin/
+obj/
+*.user
+*.userprefs
+*.pidb
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Databases & Certificates
+*.db
+*.db.bak*
+*.db-journal
+*.db-shm
+*.db-wal
+*.pem
+*.key
+
+# Local Environment Variables
+.env
+.env.*
+!.env.example
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.vs/
+.idea/
+.vscode/
+.design-ref/
+.agents/
+.artifacts/
+.kiro/
+
+# Security: Ignore all environment files and certificates
+.env
+.env.*
+!.env.example
+*.pem
+*.key

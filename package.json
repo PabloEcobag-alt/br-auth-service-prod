@@ -1,0 +1,25 @@
+{
+  "name": "internal-auth-service-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo containing API (C# Auth Service) and Web (Next.js Portal)",
+  "workspaces": [
+    "apps/api/*",
+    "apps/web/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npx -y concurrently \"npm:dev:*\"",
+    "dev:web": "npm run dev --workspace=apps/web/portal",
+    "dev:landing": "npm run dev --workspace=apps/web/landing",
+    "dev:api": "dotnet run --project apps/api/internal-auth-service",
+    "build:web": "npm run build --workspace=apps/web/portal",
+    "build:landing": "npm run build --workspace=apps/web/landing",
+    "build:api": "dotnet build apps/api/internal-auth-service",
+    "lint:web": "npm run lint --workspace=apps/web/portal",
+    "lint:landing": "npm run lint --workspace=apps/web/landing",
+    "lint": "npm run lint --workspaces --if-present",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down"
+  }
+}

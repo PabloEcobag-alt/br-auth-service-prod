@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Access Denied — Bren Raphael's Enterprise Suite</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="/css/account/access-denied.css" rel="stylesheet" />
+    <script src="/js/account/tailwind.config.js"></script>
+  </head>
+  <body class="bg-background text-foreground flex flex-col min-h-screen">
+    <main
+      class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop"
+    >
+      <!-- Access Denied Card -->
+      <div
+        class="w-full max-w-md bg-surface-container-lowest border border-outline-variant p-xl md:p-3xl shadow-sm rounded-lg"
+      >
+        <!-- Identity Section -->
+        <div class="mb-xl text-center">
+          <h1
+            class="font-display-sm text-display-sm text-primary mb-xs tracking-tight"
+          >
+            Bren Raphael's
+          </h1>
+          <p
+            class="font-body-sm text-body-sm text-on-surface-variant opacity-70"
+          >
+            Enterprise Suite
+          </p>
+        </div>
+
+        <!-- Error Icon -->
+        <div class="flex justify-center mb-lg">
+          <div
+            class="w-16 h-16 rounded-full bg-error-container flex items-center justify-center"
+          >
+            <span
+              class="material-symbols-outlined text-[32px] text-on-error-container"
+              >shield_lock</span
+            >
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="text-center mb-lg">
+          <h2
+            class="font-label-md text-label-md text-on-surface font-semibold text-base"
+          >
+            Access Denied
+          </h2>
+        </div>
+
+        <!-- Description -->
+        <div class="text-center mb-xl">
+          <p class="font-body-sm text-body-sm text-secondary">
+            You do not have permission to access the
+            <strong class="text-on-surface">{{appName}}</strong> application.
+            Please contact your system administrator if you believe this is an
+            error.
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col gap-sm">
+          <a
+            class="w-full h-12 bg-primary text-on-primary font-semibold text-sm rounded-lg flex items-center justify-center gap-sm hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer no-underline"
+            href="https://localhost:3000/"
+          >
+            Go to Portal
+            <span class="material-symbols-outlined text-[18px]"
+              >arrow_forward</span
+            >
+          </a>
+          <form method="post" action="/Account/Logout" class="w-full">
+            <button
+              class="w-full h-12 bg-surface-container-lowest text-on-surface font-semibold text-sm rounded-lg border border-outline-variant flex items-center justify-center gap-sm hover:bg-surface-container-low active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              type="submit"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >logout</span
+              >
+              Sign Out / Switch Account
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full py-xl border-t border-outline-variant bg-surface-container-low"
+    >
+      <div
+        class="max-w-max-width mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md"
+      >
+        <p
+          class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left"
+        >
+          © 2026 Bren Raphael's Enterprise Suite. All rights reserved.
+        </p>
+        <div class="flex gap-xl">
+          <span
+            class="font-label-sm text-label-sm text-outline cursor-default hover:text-primary transition-colors"
+            >Security</span
+          >
+          <span
+            class="font-label-sm text-label-sm text-outline cursor-default hover:text-primary transition-colors"
+            >Privacy</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Background Atmospheric Elements -->
+    <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+      <div
+        class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"
+      ></div>
+      <div
+        class="absolute bottom-[-5%] left-[-5%] w-[30%] h-[30%] bg-secondary-container/20 rounded-full blur-[100px]"
+      ></div>
+    </div>
+  </body>
+</html>
