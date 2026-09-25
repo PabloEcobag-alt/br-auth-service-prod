@@ -237,8 +237,24 @@ public static class DbSeeder
 
         foreach (var (clientId, clientSecret, redirectUri, postLogoutUri) in clients)
         {
-            if (await appManager.FindByClientIdAsync(clientId) is not null)
+            var existingApp = await appManager.FindByClientIdAsync(clientId);
+            if (existingApp is not null)
             {
+                if (clientId == "hrms-client")
+                {
+                    var descriptorUpdate = new OpenIddictApplicationDescriptor();
+                    await appManager.PopulateAsync(descriptorUpdate, existingApp);
+                    
+                    descriptorUpdate.RedirectUris.Clear();
+                    descriptorUpdate.RedirectUris.Add(new Uri(redirectUri));
+                    descriptorUpdate.RedirectUris.Add(new Uri("https://deploy-web-hrms-three.vercel.app/api/auth/callback/authservice"));
+                    
+                    descriptorUpdate.PostLogoutRedirectUris.Clear();
+                    descriptorUpdate.PostLogoutRedirectUris.Add(new Uri(postLogoutUri));
+                    descriptorUpdate.PostLogoutRedirectUris.Add(new Uri("https://deploy-web-hrms-three.vercel.app/"));
+                    
+                    await appManager.UpdateAsync(existingApp, descriptorUpdate);
+                }
                 continue;
             }
 
@@ -270,8 +286,8 @@ public static class DbSeeder
 
             if (clientId == "hrms-client")
             {
-                descriptor.RedirectUris.Add(new Uri("https://deploy-web-hrms.vercel.app/api/auth/callback/authservice"));
-                descriptor.PostLogoutRedirectUris.Add(new Uri("https://deploy-web-hrms.vercel.app/"));
+                descriptor.RedirectUris.Add(new Uri("https://deploy-web-hrms-three.vercel.app/api/auth/callback/authservice"));
+                descriptor.PostLogoutRedirectUris.Add(new Uri("https://deploy-web-hrms-three.vercel.app/"));
             }
 
             await appManager.CreateAsync(descriptor);
