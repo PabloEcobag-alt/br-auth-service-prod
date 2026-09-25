@@ -22,7 +22,7 @@ jobs:
       - name: Build and Publish
         run: |
           cd apps/api/internal-auth-service
-          dotnet publish -c Release -o ../../../publish
+          dotnet publish -c Release -r linux-x64 --self-contained true -o ../../../publish
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
